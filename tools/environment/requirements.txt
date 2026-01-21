@@ -1,0 +1,11 @@
+# MMAE 350 — Python package requirements
+# Install with:
+#   python -m pip install -r requirements.txt
+
+numpy
+pandas
+sympy
+matplotlib
+notebook
+ipykernel
+numba

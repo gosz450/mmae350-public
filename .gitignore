@@ -1,0 +1,64 @@
+# ===============================
+# MMAE 350 .gitignore
+# ===============================
+
+# --------------------------------
+# Python / virtual environments
+# --------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+.venv
+venv/
+my_venv/
+
+# --------------------------------
+# Jupyter
+# --------------------------------
+.ipynb_checkpoints/
+
+# --------------------------------
+# OS junk
+# --------------------------------
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# --------------------------------
+# LaTeX / Beamer build artifacts
+# --------------------------------
+tex/build/
+
+# Auxiliary LaTeX files (anywhere)
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# --------------------------------
+# Temporary editor files
+# --------------------------------
+*~
+*.swp
+*.swo
+*.bak
+
+# --------------------------------
+# Optional: ignore compiled PDFs
+# (comment these out if you WANT PDFs tracked)
+# --------------------------------
+# *.pdf
+
+# --------------------------------
+# Misc
+# --------------------------------
+tree.txt
