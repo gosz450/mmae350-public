@@ -41,6 +41,7 @@ sync: lectures
 	@cp -f $(BUILD_DIR)/lecture02_intro_matrix_algebra.pdf   ../modules/module01_matrix_algebra/slides/lecture02.pdf
 	@cp -f $(BUILD_DIR)/lecture03_solving_linear_systems.pdf ../modules/module02_linear_systems/slides/lecture03.pdf
 	@cp -f $(BUILD_DIR)/lecture04_thomas_algorithm.pdf ../modules/module02_linear_systems/slides/lecture04.pdf
+	@cp -f $(BUILD_DIR)/lecture05_gauss_seidel.pdf ../modules/module02_linear_systems/slides/lecture05.pdf
 	@echo "==> Done."
 
 help:
