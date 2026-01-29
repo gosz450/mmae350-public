@@ -32,13 +32,12 @@ The goal is to understand both the \emph{algorithmic structure} and the \emph{co
 \begin{itemize}
   \item Show all steps clearly in your handwritten or typed solution.
   \item A companion Jupyter notebook is provided to \emph{check} your results.
-  \item The notebook should not be used to replace the required analytical work.
 \end{itemize}
 
 Submit the following to Canvas:
 \begin{itemize}
-  \item A single PDF containing your written solutions.
   \item Your completed Jupyter notebook (\texttt{.ipynb}).
+  \item An electronic version of your written hand calcuation.
 \end{itemize}
 
 %-------------------------------------------------
@@ -71,7 +70,7 @@ where
   \item Perform back substitution to obtain the solution vector $\bm{x}$.
 \end{enumerate}
 
-Clearly show your forward-sweep table and all intermediate values.
+Clearly show your forward-sweep in a table that includes all intermediate values.
 
 \subsection*{(b) Verification using a Jupyter notebook}
 Using the provided notebook:
@@ -101,8 +100,11 @@ Clearly indicate which values are:
 
 \subsection*{(b) Second sweep}
 Perform a second Gauss--Seidel sweep to compute $\bm{x}^{(2)}$.
-You may compute all components explicitly or compute one component in detail and explain the pattern.
-
+Again, indicate which values are:
+\begin{itemize}
+  \item newly updated within the current sweep, and
+  \item carried over from the previous iteration.
+\end{itemize}
 \subsection*{(c) Convergence discussion}
 In 2--3 sentences, answer the following:
 \begin{itemize}
@@ -119,15 +121,6 @@ Using the provided notebook:
 \end{itemize}
 
 %-------------------------------------------------
-\section*{Submission Checklist}
-Before submitting, make sure that:
-\begin{itemize}
-  \item All analytical steps are clearly shown.
-  \item Numerical values are reported with reasonable precision.
-  \item Your notebook runs without errors.
-  \item Your notebook output confirms your hand calculations.
-\end{itemize}
-
 \section*{Learning Takeaways}
 After completing this assignment, you should be able to:
 \begin{itemize}

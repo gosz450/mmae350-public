@@ -1,0 +1,147 @@
+\documentclass[aspectratio=169]{beamer}
+
+\input{../preamble/beamer_styles.tex}
+
+% -----------------------------
+% Title info
+% -----------------------------
+\title[MMAE 350]{Nonlinear Systems in Two Dimensions}
+\subtitle{Two-Term Linearization in \(\,x\) and \(\,y\)}
+\author{MMAE 350}
+\date{}
+
+\begin{document}
+
+% -------------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% -------------------------------------------------
+\begin{frame}{Nonlinear Systems of Equations}
+Many engineering problems lead to systems of nonlinear equations:
+\[
+\mathbf{F}(\mathbf{x}) = \mathbf{0},
+\quad
+\mathbf{x} =
+\begin{bmatrix}
+x \\ y
+\end{bmatrix}.
+\]
+
+\vspace{0.75em}
+Examples include:
+\begin{itemize}
+  \item nonlinear material behavior,
+  \item geometric nonlinearity,
+  \item nonlinear boundary conditions.
+\end{itemize}
+
+\vspace{0.75em}
+To solve these systems, we rely on \emph{local linearization}.
+\end{frame}
+
+% -------------------------------------------------
+\begin{frame}{A Two-Dimensional Nonlinear System}
+Consider a system of two nonlinear equations:
+\[
+\begin{aligned}
+F_1(x,y) &= 0, \\
+F_2(x,y) &= 0.
+\end{aligned}
+\]
+
+\vspace{0.75em}
+We seek a solution \((x,y)\) that satisfies both equations simultaneously.
+
+\vspace{0.75em}
+In general, these equations cannot be solved analytically.
+\end{frame}
+
+% -------------------------------------------------
+\begin{frame}{Local Linearization About a Point}
+Let \((x_0,y_0)\) be a current approximation to the solution.
+
+\vspace{0.75em}
+We approximate the nonlinear system near this point using a first-order Taylor expansion.
+
+\vspace{0.75em}
+This is a direct generalization of the 1D Taylor expansion.
+\end{frame}
+
+% -------------------------------------------------
+\begin{frame}{Two-Term Taylor Expansion (2D)}
+Each component of \(\mathbf{F}\) is expanded about \((x_0,y_0)\):
+
+\[
+\begin{aligned}
+F_1(x,y) \approx\;&
+F_1(x_0,y_0)
++ \frac{\partial F_1}{\partial x}(x_0,y_0)(x-x_0)
++ \frac{\partial F_1}{\partial y}(x_0,y_0)(y-y_0), \\[0.5em]
+F_2(x,y) \approx\;&
+F_2(x_0,y_0)
++ \frac{\partial F_2}{\partial x}(x_0,y_0)(x-x_0)
++ \frac{\partial F_2}{\partial y}(x_0,y_0)(y-y_0).
+\end{aligned}
+\]
+
+\vspace{0.5em}
+Higher-order terms are neglected.
+\end{frame}
+
+% -------------------------------------------------
+\begin{frame}{Linearized System in Matrix Form}
+The linearized system can be written compactly as:
+\[
+\mathbf{F}(x,y)
+\approx
+\mathbf{F}(x_0,y_0)
++
+\mathbf{J}(x_0,y_0)
+\begin{bmatrix}
+x - x_0 \\
+y - y_0
+\end{bmatrix},
+\]
+
+where \(\mathbf{J}\) is the Jacobian matrix:
+\[
+\mathbf{J} =
+\begin{bmatrix}
+\dfrac{\partial F_1}{\partial x} & \dfrac{\partial F_1}{\partial y} \\[0.8em]
+\dfrac{\partial F_2}{\partial x} & \dfrac{\partial F_2}{\partial y}
+\end{bmatrix}.
+\]
+\end{frame}
+
+% -------------------------------------------------
+\begin{frame}{What Does the Jacobian Represent?}
+\begin{itemize}
+  \item The Jacobian generalizes the concept of a derivative to multiple dimensions
+  \item It describes how the system changes with respect to small changes in \((x,y)\)
+  \item It provides the best linear approximation near the current point
+\end{itemize}
+
+\vspace{0.75em}
+\begin{block}{Key Idea}
+Nonlinear problems are solved by repeatedly solving linearized systems.
+\end{block}
+\end{frame}
+
+% -------------------------------------------------
+\begin{frame}{Why Linearization Matters}
+\begin{itemize}
+  \item Enables iterative solution methods (Newton-type methods)
+  \item Converts nonlinear problems into a sequence of linear solves
+  \item Forms the foundation of nonlinear finite element analysis
+\end{itemize}
+
+\vspace{0.75em}
+\begin{block}{Looking Ahead}
+Next, we will use this linearization to construct Newton's method
+for solving nonlinear systems.
+\end{block}
+\end{frame}
+
+\end{document}

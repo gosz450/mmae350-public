@@ -1,0 +1,223 @@
+\documentclass{beamer}
+
+\input{../preamble/beamer_styles.tex}
+
+\title[MMAE 350]{Newton’s Method for Nonlinear Systems}
+\subtitle{Nonlinear Systems}
+\author{MMAE 350}
+\date{}
+
+\begin{document}
+
+%-------------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Why Nonlinear Solvers Matter}
+
+\begin{columns}[T]
+%-------------------------------------------------
+\begin{column}{0.55\textwidth}
+\begin{itemize}
+  \item Most engineering models are \textbf{nonlinear}
+  \item Linear systems appear \textbf{inside} nonlinear solvers
+  \item Newton’s method underlies:
+  \begin{itemize}
+    \item nonlinear finite element analysis
+    \item large-deformation mechanics
+    \item computational fluid dynamics (implicit and steady solvers)
+    \item multiphysics coupling (like fluid-structure interaction)
+  \end{itemize}
+\end{itemize}
+
+\vspace{1em}
+\centerline{\emph{Linear solvers are a subroutine.}}
+\end{column}
+%-------------------------------------------------
+\begin{column}{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{flow_cylinder.png}
+
+\vspace{0.5em}
+{\scriptsize Example of a nonlinear CFD flow field}
+\end{column}
+%-------------------------------------------------
+\end{columns}
+
+\end{frame}
+%-------------------------------------------------
+\begin{frame}{Residual Formulation}
+We seek the solution of a nonlinear system written as
+\[
+\bm{R}(\bm{u}) = \bm{0},
+\]
+
+where:
+\begin{itemize}
+  \item $\bm{u}$ is the vector of unknowns
+  \item $\bm{R}$ is the nonlinear residual vector
+\end{itemize}
+
+\medskip
+This formulation will appear repeatedly throughout the course.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Newton’s Method: Scalar Problem}
+Given a nonlinear equation
+\[
+f(x) = 0,
+\]
+linearize about the current iterate $x^{(k)}$:
+\[
+f(x) \approx f(x^{(k)}) + f'(x^{(k)})(x - x^{(k)}).
+\]
+
+Setting the linear approximation to zero yields
+\[
+f'(x^{(k)})\,\Delta x = -f(x^{(k)}),
+\qquad
+x^{(k+1)} = x^{(k)} + \Delta x.
+\]
+
+\medskip
+\textbf{Key idea:} Each Newton iteration solves a \textbf{linear equation}.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Newton’s Method (Scalar Algorithm)}
+\textbf{Newton’s Method (Scalar)}
+
+\begin{enumerate}
+  \item Choose a convergence tolerance $\varepsilon > 0$
+  \item Choose an initial guess $x^{(0)}$
+  \item For $k = 0,1,2,\dots$:
+  \begin{itemize}
+    \item Evaluate the residual $f(x^{(k)})$
+    \item Evaluate the derivative $f'(x^{(k)})$
+    \item Solve $f'(x^{(k)})\,\Delta x = -f(x^{(k)})$
+    \item Update $x^{(k+1)} = x^{(k)} + \Delta x$
+    \item \textbf{Check convergence:} if $|f(x^{(k+1)})| < \varepsilon$, stop
+  \end{itemize}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Geometric Interpretation}
+
+\begin{columns}[T]
+%---------------------------------
+\begin{column}{0.55\textwidth}
+\begin{itemize}
+  \item Newton’s method uses the tangent line at $x^{(k)}$
+  \item The next iterate is where the tangent intersects the axis
+  \item Convergence is rapid when the initial guess is good
+  \item Poor initial guesses may lead to divergence
+\end{itemize}
+\end{column}
+%---------------------------------
+\begin{column}{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{chap01_fig03_newton_method.png}
+
+\vspace{0.5em}
+{\scriptsize Geometric interpretation of Newton’s method}
+\end{column}
+%---------------------------------
+\end{columns}
+
+\end{frame}
+%-------------------------------------------------
+\begin{frame}{Newton’s Method for Nonlinear Systems}
+We now consider a system of nonlinear equations:
+\[
+\bm{R}(\bm{u}) =
+\begin{bmatrix}
+R_1(u_1,\dots,u_n)\\
+\vdots\\
+R_n(u_1,\dots,u_n)
+\end{bmatrix}
+= \bm{0}.
+\]
+
+Linearizing about $\bm{u}^{(k)}$ gives:
+\[
+\bm{R}(\bm{u})
+\approx
+\bm{R}(\bm{u}^{(k)})
++
+\bm{J}(\bm{u}^{(k)})(\bm{u}-\bm{u}^{(k)}),
+\]
+
+where the Jacobian matrix is defined by
+\[
+J_{ij} = \frac{\partial R_i}{\partial u_j}.
+\]
+
+\medskip
+\textbf{Interpretation:} $\bm{J}$ is the \textbf{tangent operator}.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Newton System, Update, and Convergence}
+
+At iteration $k$, solve the linear system
+\[
+\bm{J}(\bm{u}^{(k)})\,\Delta\bm{u}
+=
+-\bm{R}(\bm{u}^{(k)}),
+\]
+and update
+\[
+\bm{u}^{(k+1)} = \bm{u}^{(k)} + \Delta\bm{u}.
+\]
+
+\medskip
+\textbf{Newton’s Method (Systems)}
+
+\begin{enumerate}
+  \item Choose a convergence tolerance $\varepsilon > 0$
+  \item Choose an initial guess $\bm{u}^{(0)}$
+  \item For $k = 0,1,2,\dots$:
+  \begin{itemize}
+    \item Evaluate the residual $\bm{R}(\bm{u}^{(k)})$
+    \item Assemble the Jacobian $\bm{J}(\bm{u}^{(k)})$
+    \item Solve $\bm{J}(\bm{u}^{(k)})\,\Delta\bm{u} = -\bm{R}(\bm{u}^{(k)})$
+    \item Update $\bm{u}^{(k+1)} = \bm{u}^{(k)} + \Delta\bm{u}$
+    \item \textbf{Check convergence:} 
+    if $\|\bm{R}(\bm{u}^{(k+1)})\| / \|\bm{R}(\bm{u}^{(0)})\| < \varepsilon$: \textbf{stop}
+  \end{itemize}
+\end{enumerate}
+
+\end{frame}
+%-------------------------------------------------
+\begin{frame}{Summary}
+\begin{itemize}
+   \item Each iteration requires solving a linear system
+  \item Exibits quadratic convergence when close to the solution
+  \item Strong dependence on the initial guess
+  \item Conditioning of the Jacobian affects robustness
+  \item Failure modes are possible
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Notebook Example}
+\end{frame}
+%-------------------------------------------------
+
+
+%-------------------------------------------------
+%-------------------------------------------------
+\begin{frame}{Key Takeaways}
+\begin{itemize}
+  \item Newton’s method is a linearization engine
+  \item The Jacobian is a tangent operator
+  \item Linear solves dominate the computational cost
+  \item This framework underlies the remainder of the course
+\end{itemize}
+\end{frame}
+
+\end{document}
