@@ -43,8 +43,9 @@ sync: lectures
 	@cp -f $(BUILD_DIR)/lecture04_thomas_algorithm.pdf ../modules/module02_linear_systems/slides/lecture04.pdf
 	@cp -f $(BUILD_DIR)/lecture05_gauss_seidel.pdf ../modules/module02_linear_systems/slides/lecture05.pdf
 	@cp -f $(BUILD_DIR)/lecture06_taylor_series_1D.pdf ../modules/module03_nonlinear_systems/slides/lecture06.pdf
-	@cp -f $(BUILD_DIR)/lecture07_nonlinear_systems_2D.pdf ../modules/module03_nonlinear_systems/slides/lecture07.pdf
-	@cp -f $(BUILD_DIR)/lecture08_newtons_method_nonlinear_systems.pdf ../modules/module03_nonlinear_systems/slides/lecture08.pdf
+	@cp -f $(BUILD_DIR)/lecture07_1D_newtons_method.pdf ../modules/module03_nonlinear_systems/slides/lecture07.pdf
+	@cp -f $(BUILD_DIR)/lecture08_nonlinear_systems_2D.pdf ../modules/module03_nonlinear_systems/slides/lecture08.pdf
+	@cp -f $(BUILD_DIR)/lecture09_newtons_method_nonlinear_systems.pdf ../modules/module03_nonlinear_systems/slides/lecture09.pdf
 	@echo "==> Done."
 
 help:
