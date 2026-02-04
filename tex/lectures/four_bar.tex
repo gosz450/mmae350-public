@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=1in}
+\sisetup{detect-all}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
+
+\begin{document}
+
+
+
+\section*{Notebook Example: 4-Bar Linkage Position Analysis (Nonlinear System)}
+\label{sec:fourbar-newton}
+
+A planar four-bar linkage consists of four rigid links connected by ideal
+pin joints. The ground link has length $r_1$ and connects two fixed pivots
+$O_2$ and $O_4$. The input crank has length $r_2$ and rotates about $O_2$
+with a prescribed input angle $\theta_2$. The coupler has length $r_3$ and
+connects joint $A$ to joint $B$. The output rocker has length $r_4$ and
+rotates about $O_4$ with angle $\theta_4$.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.05, line cap=round, line join=round]
+  % --- Parameters for drawing only (not the analysis) ---
+  \def\rOne{5.0}   % ground length (visual)
+  \def\rTwo{2.3}   % input
+  \def\rThree{4.0} % coupler
+  \def\rFour{3.0}  % output
+  \def\thTwo{25}   % degrees (given)
+  \def\thFour{80}  % degrees (unknown in problem; set for picture)
+
+  % Fixed pivots
+  \coordinate (O2) at (0,0);
+  \coordinate (O4) at (\rOne,0);
+
+  % Joint A from input crank
+  \coordinate (A) at ({\rTwo*cos(\thTwo)},{\rTwo*sin(\thTwo)});
+
+  % Joint B from output rocker (for picture)
+  \coordinate (B) at ({\rOne+\rFour*cos(\thFour)},{\rFour*sin(\thFour)});
+
+  % Links
+  \draw[thick] (O2) -- (O4) node[midway, below] {$r_1$};
+  \draw[thick] (O2) -- (A)  node[midway, above]  {$r_2$};
+  \draw[thick] (A)  -- (B)  node[midway, above] {$r_3$};
+  \draw[thick] (O4) -- (B)  node[midway, right] {$r_4$};
+
+  % Joints
+  \fill (O2) circle (2pt) node[below left] {$O_2$};
+  \fill (O4) circle (2pt) node[below right] {$O_4$};
+  \fill (A)  circle (2pt) node[above left] {$A$};
+  \fill (B)  circle (2pt) node[above right] {$B$};
+
+  % Reference x-axis at O2 and O4
+  \draw[->, thin] (O2) -- ++(1.3,0) node[below] {$x$};
+  \draw[->, thin] (O2) -- ++(0,1.3) node[left] {$y$};
+
+  % Angle arcs
+  % theta2 at O2 (given)
+  \draw[thin] (1.0,0) arc[start angle=0, end angle=\thTwo, radius=1.0];
+  \node at (1.25,0.25) {$\theta_2$};
+
+  % theta4 at O4 (unknown)
+  \begin{scope}
+    \coordinate (O4x) at ($(O4)+(1.0,0)$);
+    \draw[thin] (O4x) arc[start angle=0, end angle=\thFour, radius=1.0];
+    \node at ($(O4)+(1.2,0.45)$) {$\theta_4$};
+  \end{scope}
+  
+  % draw local x-axis at A
+      \draw[->, thin] (O4) -- ++(1.2,0);
+
+  % theta3 at A (unknown): measure relative to +x direction through A
+  \begin{scope}
+    % compute direction of AB for the drawn configuration (for arc only)
+    \path let
+      \p1 = (A),
+      \p2 = (B)
+    in
+      % draw local x-axis at A
+      \draw[->, thin] (A) -- ++(1.0,0);
+    ;
+    % approximate theta3 arc using the AB direction angle in the picture
+    % (angle value is conceptual in the figure; exact numeric not needed)
+    \draw[thin] (A) ++(0.9,0) arc[start angle=0, end angle=30, radius=0.9];
+    \node at ($(A)+(1.1,0.25)$) {$\theta_3$};
+  \end{scope}
+
+  % Notes
+  \node[align=left] at ($(O2)+(2.7,-1.15)$)
+    {\footnotesize Given: $r_1,r_2,r_3,r_4,\ \theta_2$\quad Solve for: $\theta_3,\theta_4$};
+
+\end{tikzpicture}
+\caption{Planar four-bar linkage.}
+\label{fig:fourbar}
+\end{figure}
+
+
+For a given set of link lengths $(r_1,r_2,r_3,r_4)$ and a prescribed input
+angle $\theta_2$, determine the configuration of the linkage by solving for
+the unknown angles
+\[
+\theta_3 \quad \text{and} \quad \theta_4.
+\]
+This is a nonlinear system of equations because the geometry involves
+$\sin(\cdot)$ and $\cos(\cdot)$ terms.
+
+\subsection*{Coordinate setup}
+Place the mechanism in the $xy$-plane with fixed pivots
+\[
+O_2=(0,0), \qquad O_4=(r_1,0).
+\]
+Let the joint locations be:
+\[
+A = O_2 + ( r_2\cos\theta_2,\ r_2\sin\theta_2),
+\qquad
+B = O_4 + ( r_4\cos\theta_4,\ r_4\sin\theta_4).
+\]
+The coupler constraint is that the distance between $A$ and $B$ equals $r_3$.
+
+\subsection*{Loop-closure (nonlinear system)}
+The vector loop-closure equation is
+\[
+\mathbf{r}_2 + \mathbf{r}_3 = \mathbf{r}_1 + \mathbf{r}_4,
+\]
+which, in components, yields the nonlinear system
+\[
+\begin{aligned}
+f_1(\theta_3,\theta_4) &= r_2\cos\theta_2 + r_3\cos\theta_3 - r_1 - r_4\cos\theta_4 = 0,\\
+f_2(\theta_3,\theta_4) &= r_2\sin\theta_2 + r_3\sin\theta_3 - r_4\sin\theta_4 = 0.
+\end{aligned}
+\]
+Define
+\[
+F(\mathbf{x})=
+\begin{bmatrix}
+f_1(\theta_3,\theta_4)\\[2pt]
+f_2(\theta_3,\theta_4)
+\end{bmatrix},
+\qquad
+\mathbf{x}=
+\begin{bmatrix}
+\theta_3\\
+\theta_4
+\end{bmatrix}.
+\]
+We seek $\mathbf{x}$ such that $F(\mathbf{x})=\mathbf{0}$.
+
+
+% ------------------------------------------------------------
+
+\end{document}
