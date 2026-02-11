@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\begin{center}
+\Large \textbf{MMAE 350 -- Homework 1}\\
+\large Open-Ended Questions
+\end{center}
+
+\vspace{1em}
+
+% ==========================================================
+\section*{Problem 1 -- What Is Computational Mechanics?}
+
+\textbf{(a)} Computational mechanics is the use of computers and numerical methods to solve engineering problems that are too complicated to solve by hand. Instead of finding exact formulas, we approximate solutions using algorithms. It connects physical laws with computation so we can analyze real-world systems.
+
+\medskip
+
+\textbf{(b)} Computation enters the modeling process after we write down the governing equations and boundary conditions. Once the mathematical model is set up, we use numerical methods to approximate the solution. For many realistic engineering problems, solving the equations exactly is not possible, so computation allows us to get practical answers.
+
+\medskip
+
+\textbf{(c)} Even if code runs without errors, that does not mean the result is correct. The model itself could be wrong, or we might have used unrealistic assumptions. Engineers need to interpret the results and check whether they make physical sense. Validation helps ensure that the computed solution actually represents the real system.
+
+\vspace{1em}
+
+% ==========================================================
+\section*{Problem 2 -- Running and Modifying Notebook 01}
+
+\textbf{(c)} When the function was changed from $y = \sin(2\pi x)$ to $y = x^2$, the graph changed from a wave shape to a smooth curve that increases over the interval. The sine function oscillates above and below zero, while the quadratic function steadily increases and stays positive on $[0,1]$. The plot reflects the different mathematical behavior of the two functions.
+
+\medskip
+
+\textbf{(d)} Increasing the number of sampling points makes the graph look smoother and more continuous. With more points, the curve better represents the actual function instead of appearing jagged or piecewise. Using more points can also improve how accurately we interpret the behavior of the function.
+
+\vspace{1em}
+
+% ==========================================================
+\section*{Problem 3 -- Interpretation of $A\bm{x} = \bm{b}$}
+
+To solve a linear system numerically means finding a vector $\bm{x}$ that satisfies the equation $A\bm{x} = \bm{b}$ using computational methods. The quantity being computed is the unknown vector $\bm{x}$, which often represents physical quantities such as displacements or temperatures. Linear systems appear frequently in computational mechanics because when we discretize differential equations, they turn into systems of algebraic equations. Solving these systems allows us to approximate the behavior of the physical problem.
+
+\end{document}

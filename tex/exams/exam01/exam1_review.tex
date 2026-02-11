@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{bm}
+
+\geometry{margin=1in}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MMAE 350}
+\rhead{Exam 1}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{center}
+{\Large \textbf{Illinois Institute of Technology}}\\[4pt]
+{\Large \textbf{MMAE 350 -- Computational Mechanics}}\\[6pt]
+{\Large \textbf{Exam 1}}\\[6pt]
+Time: 75 minutes \\
+Total: 50 points
+\end{center}
+
+\vspace{1em}
+
+\noindent
+\textbf{Name:} \rule{3in}{0.4pt}
+
+\vspace{1em}
+
+\noindent
+\textbf{Instructions:}
+\begin{itemize}
+\item This exam is closed book and closed notes.
+\item A calculator is permitted.
+\item Show all work clearly.
+\item Answers without supporting work may receive limited credit.
+\end{itemize}
+
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+% ==============================================================
+\section*{Part I -- Gaussian Elimination (6 points)}
+
+Consider the system
+
+\[
+\begin{aligned}
+2x + y - z &= 3 \\
+4x + 3y + z &= 7 \\
+-2x + y + 2z &= 1
+\end{aligned}
+\]
+
+\begin{enumerate}[label=(\alph*)]
+
+\item (3 pts) Compute the multiplier $m_{21}$ used to eliminate the first column (no pivoting).
+
+\vspace{2cm}
+
+\item (3 pts) After eliminating the first column, what is the updated coefficient in row 2, column 2?
+
+\vspace{2cm}
+
+\end{enumerate}
+
+\newpage
+
+% ==============================================================
+\section*{Part II -- Thomas Algorithm (6 points)}
+
+Consider the tridiagonal system
+
+\[
+\begin{bmatrix}
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2
+\end{bmatrix}
+\bm{x}
+=
+\begin{bmatrix}
+1 \\
+0 \\
+1
+\end{bmatrix}.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+
+\item (3 pts) Perform the first forward elimination step and compute the modified diagonal entry $d_2'$.
+
+\vspace{3cm}
+
+\item (3 pts) In 2--3 sentences, explain why the Thomas algorithm is more efficient than standard Gaussian elimination for this type of matrix.
+
+\vspace{3cm}
+
+\end{enumerate}
+
+% ==============================================================
+\section*{Part III -- Gauss--Seidel Method (6 points)}
+
+Consider the linear system
+
+\[
+\begin{bmatrix}
+4 & -1 & 0 \\
+-1 & 4 & -1 \\
+0 & -1 & 4
+\end{bmatrix}
+\bm{x}
+=
+\begin{bmatrix}
+2 \\
+6 \\
+2
+\end{bmatrix}.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+
+\item (4 pts) Perform one Gauss--Seidel sweep starting from
+\[
+\bm{x}^{(0)} = (0,0,0),
+\]
+
+and compute
+\[
+x_1^{(1)}, \quad x_2^{(1)}, \quad x_3^{(1)}.
+\]
+
+\vspace{4cm}
+
+\item (2 pts) In 2--3 sentences, explain why this system is expected to converge under Gauss--Seidel iteration.
+
+\vspace{3cm}
+
+\end{enumerate}
+
+\newpage
+
+% ==============================================================
+\section*{Part IV -- Newton's Method (1D) (6 points)}
+
+Let
+\[
+f(x) = x^3 - 2x - 5.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+
+\item (2 pts) Compute $f'(x)$.
+
+\vspace{2cm}
+
+\item (2 pts) Perform one Newton iteration starting from $x_0 = 2$. Compute $x_1$.
+
+\vspace{3cm}
+
+\item (2 pts) At iteration $x_k$, Newton’s method replaces $f(x)$ with a linear approximation. In 2--3 sentences, explain how $x_{k+1}$ is obtained from this linearization.
+
+\vspace{3cm}
+
+\end{enumerate}
+
+% ==============================================================
+\section*{Part V -- Newton's Method for a System (8 points)}
+
+Consider
+\[
+f(x,y) = x^2 + y^2 - 4,
+\]
+\[
+g(x,y) = x - y - 1.
+\]
+
+with initial guess $(1,1)$.
+
+\begin{enumerate}[label=(\alph*)]
+
+\item (2 pts) Compute the residual vector at $(1,1)$.
+
+\vspace{3cm}
+
+\item (4 pts) Compute the Jacobian matrix at $(1,1)$.
+
+\vspace{3cm}
+
+\item (2 pts) In 2--3 sentences, explain why solving the linear system inside Newton's method corresponds to a first-order Taylor approximation.
+
+\vspace{3cm}
+
+\end{enumerate}
+
+\newpage
+
+% ==============================================================
+\section*{Part VI -- Big Picture (6 points)}
+
+In 4--6 complete sentences, compare the following three methods:
+
+\begin{itemize}
+\item Gaussian elimination
+\item Gauss--Seidel
+\item Newton's method
+\end{itemize}
+
+In your comparison, clearly address:
+
+\begin{itemize}
+\item Which types of problems each method is used to solve (linear or nonlinear),
+\item Whether the method is direct or iterative,
+\item One situation where each method would be appropriate.
+\end{itemize}
+
+\vspace{5cm}
+
+% ==============================================================
+\section*{Part VII -- Code Interpretation (4 points)}
+
+Consider the following Python code:
+
+\begin{verbatim}
+x = 0
+for k in range(3):
+    x = 2*x + 1
+print(x)
+\end{verbatim}
+
+\begin{enumerate}[label=(\alph*)]
+
+\item (3 pts) What value is printed?
+
+\vspace{2cm}
+
+\item (1 pt) In one sentence, describe what this loop is doing.
+
+\vspace{2cm}
+
+\end{enumerate}
+
+% ==============================================================
+\section*{Part VIII -- Pseudocode (4 points)}
+
+Write clear pseudocode for Newton's method to solve
+\[
+f(x) = 0.
+\]
+
+
+\vspace{4cm}
+
+% ==============================================================
+\section*{Part IX -- Matrix Algebra (4 points)}
+
+Consider
+
+\[
+A =
+\begin{bmatrix}
+2 & -1 & 0 \\
+1 & 3 & -2 \\
+0 & -1 & 4
+\end{bmatrix},
+\quad
+\bm{x} =
+\begin{bmatrix}
+1 \\
+2 \\
+-1
+\end{bmatrix}.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+
+\item (2 pts) Compute $\bm{b} = A\bm{x}$.
+
+\vspace{3cm}
+
+\item (2 pts) Write a short block of Python code (using basic loops, not built-in matrix multiplication) that computes $\bm{b} = A\bm{x}$ for a general $3 \times 3$ matrix $A$ and vector $\bm{x}$.
+
+\vspace{3cm}
+
+\end{enumerate}
+
+\end{document}
