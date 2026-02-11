@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/images/mmae350_banner.png" alt="MMAE 350 Banner" width="900">
+</p>
+
 # MMAE 350 --- Computational Mechanics
 
 This repository contains public course materials for **MMAE 350:
