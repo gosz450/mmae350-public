@@ -1,105 +1,222 @@
-# MMAE 350 — Computational Mechanics
+# MMAE 350 --- Computational Mechanics
 
-This repository contains course materials for **MMAE 350: Computational Mechanics**
+This repository contains public course materials for **MMAE 350:
+Computational Mechanics**\
+offered by the Department of Mechanical, Materials, and Aerospace
+Engineering\
 at the Illinois Institute of Technology.
 
-The course introduces computational approaches used in modern engineering
-analysis, with emphasis on linear systems, numerical methods, and their role
-in modeling physical systems. Python and Jupyter notebooks are used throughout
-the course as primary computational tools.
+Computational methods are central to modern engineering practice. This
+course develops the mathematical foundation, numerical algorithms, and
+computational workflows used to model and solve engineering problems
+using Python.
 
----
+------------------------------------------------------------------------
 
-## Repository Organization
+## Course Overview
 
-This repository is organized by **course modules**, with supporting materials
-for homework, data, and software setup.
+**MMAE 350 -- Computational Mechanics** introduces numerical methods
+used in mechanical and aerospace engineering, with emphasis on the
+computational solution of governing equations arising in physical
+systems.
+
+Students develop computational fluency using **Python and Jupyter
+notebooks**, and apply numerical methods to engineering problems in:
+
+-   Heat transfer\
+-   Wave propagation\
+-   Transport phenomena\
+-   Conservation laws
+
+The course connects mathematical formulation, physical modeling, and
+computational implementation. Students learn to:
+
+-   Formulate engineering problems in matrix and vector form\
+-   Solve systems of linear algebraic equations using direct and
+    iterative methods\
+-   Apply Newton's method to nonlinear equations and systems\
+-   Derive and implement finite-difference schemes for steady and
+    transient PDEs\
+-   Analyze stability and accuracy of numerical time-marching methods\
+-   Solve 1D and 2D heat conduction problems\
+-   Implement introductory finite-volume methods\
+-   Construct basic one-dimensional finite element approximations
+
+Throughout the semester, emphasis is placed on:
+
+-   Clear mathematical formulation\
+-   Algorithm development\
+-   Structured computational workflows\
+-   Interpretation of numerical results in physical terms
+
+------------------------------------------------------------------------
+
+## Repository Structure
+
+The repository is organized by instructional modules.
 
 ### Modules
 
-The `modules/` directory contains the core instructional materials for the course.
-Each module includes:
-- a `README.md` describing the learning goals and context
-- lecture slides (PDF)
-- companion Jupyter notebooks
+The `modules/` directory contains the primary instructional materials
+for each topic area.\
+Each module typically includes:
 
+-   A `README.md` describing learning objectives\
+-   Lecture slides (PDF format)\
+-   Companion Jupyter notebooks for in-class demonstrations and guided
+    exploration
+
+```{=html}
+<!-- -->
 ```
-modules/
-├── module00_setup/
-├── module01_matrix_algebra/
-├── module02_linear_systems/
-└── ...
-```
+    modules/
+    ├── module00_setup/
+    ├── module01_matrix_algebra/
+    ├── module02_linear_systems/
+    └── module03_nonlinear_systems/
 
-Students should begin each module by reading the module’s `README.md`.
+Students should begin each module by reviewing the module-level README
+file.
 
----
+------------------------------------------------------------------------
 
 ### Homework
 
-The `homework/` directory contains homework assignments and any associated
-starter notebooks provided for students.
+The `homework/` directory contains homework assignments and any
+associated starter notebooks distributed to students.
 
-```
-homework/
-├── hw01/
-├── hw02/
-└── ...
-```
+    homework/
+    ├── hw01/
+    ├── hw02/
+    ├── hw03/
+    └── ...
 
-Homework submissions are handled through **Canvas**, not through GitHub.
+Homework submission procedures are managed through the course learning
+management system.
 
----
+------------------------------------------------------------------------
 
 ### Data
 
-The `data/` directory contains shared input files used in demonstrations,
-examples, or notebooks.
+The `data/` directory contains shared input files used in demonstrations
+and computational experiments.
 
----
+------------------------------------------------------------------------
 
-### Software Setup and Tools
+### Tools and Environment Setup
 
-The `tools/` directory contains supporting files related to the Python
-environment and utility scripts used in the course.
+The `tools/` directory contains environment configuration files and
+supporting scripts.
 
-Module 00 provides detailed, step-by-step instructions for installing Python,
-creating a virtual environment, and configuring Jupyter.
+Students should complete **Module 00 --- Setup** before beginning other
+course work. This module provides step-by-step guidance for installing
+Python, creating a virtual environment, and configuring Jupyter.
 
----
+------------------------------------------------------------------------
 
-### Instructor Source Files
+## How to Use This Repository
 
-The `tex/` directory contains LaTeX source files used to generate lecture
-slides, homework PDFs, and the syllabus. These files are provided for
-transparency and reproducibility but are not required for students to use.
+This repository is intended to be used locally on your own machine.\
+Students should **clone** the repository rather than downloading
+individual files.
 
----
+### Step 1 --- Install Git (if needed)
 
-## How Students Should Use This Repository
+If Git is not already installed:
 
-1. Clone or download the repository to your local machine.
-2. Complete **Module 00** to set up your software environment.
-3. For each module:
-   - read the module `README.md`
-   - review the lecture slides
-   - work through the companion notebooks
-4. Submit homework assignments via Canvas as instructed.
+-   macOS: Install Xcode Command Line Tools
 
----
+    ``` bash
+    xcode-select --install
+    ```
+
+-   Windows: Install Git from https://git-scm.com\
+
+-   Linux: Use your distribution's package manager
+
+------------------------------------------------------------------------
+
+### Step 2 --- Clone the Repository
+
+Open a terminal (Mac/Linux) or Git Bash (Windows), navigate to the
+directory where you want the course folder to live, and run:
+
+**Using SSH:**
+
+``` bash
+git clone git@github.com:gosz450/mmae350-public.git
+```
+
+**Using HTTPS:**
+
+``` bash
+git clone https://github.com/gosz450/mmae350-public.git
+```
+
+This will create a folder named:
+
+    mmae350-public
+
+Move into the directory:
+
+``` bash
+cd mmae350-public
+```
+
+------------------------------------------------------------------------
+
+### Step 3 --- Set Up Your Python Environment
+
+Complete **Module 00 --- Setup** before running any notebooks.
+
+After activating your virtual environment, launch Jupyter:
+
+``` bash
+jupyter notebook
+```
+
+or
+
+``` bash
+jupyter lab
+```
+
+Then navigate to the appropriate module and open the notebook.
+
+------------------------------------------------------------------------
+
+### Updating the Repository During the Semester
+
+New materials may be added throughout the semester.\
+To update your local copy, run:
+
+``` bash
+git pull
+```
+
+from inside the `mmae350-public` directory.
+
+------------------------------------------------------------------------
 
 ## Software Requirements
 
-- Python 3.10 or newer
-- Jupyter Notebook
-- NumPy, SymPy, Matplotlib, and related scientific libraries
+-   Python 3.10 or newer\
+-   Jupyter Notebook or JupyterLab\
+-   NumPy\
+-   SymPy\
+-   Matplotlib
 
-See **Module 00** for full installation instructions.
+Full installation instructions are provided in Module 00.
 
----
+------------------------------------------------------------------------
 
 ## Instructor
 
-**Mike Gosz**  
-Department of Mechanical, Materials, and Aerospace Engineering  
+**Mike Gosz**\
+Department of Mechanical, Materials, and Aerospace Engineering\
 Illinois Institute of Technology
+
+------------------------------------------------------------------------
+
+© Illinois Institute of Technology. Course materials are provided for
+educational use.
